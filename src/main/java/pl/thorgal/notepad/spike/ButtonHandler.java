@@ -14,7 +14,8 @@ public class ButtonHandler implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent event) {
-		outputField.appendText("New word\n");
+		outputField.appendText("New word"+"\n");
 	}
 
 }
+

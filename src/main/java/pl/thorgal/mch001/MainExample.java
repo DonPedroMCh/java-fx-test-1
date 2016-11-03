@@ -1,4 +1,4 @@
-package pl.thorgal.notepad.spike;
+package pl.thorgal.mch001;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class Main extends Application {
+public class MainExample extends Application {
 
 	private TextField outputField;
 
@@ -37,7 +37,7 @@ public class Main extends Application {
 		
 		// First button uses a separate class to define its logic
 		Button addWordButton = new Button("Add");
-		ButtonHandler customHandler = new ButtonHandler(outputField);
+		ButtonHandler1 customHandler = new ButtonHandler1(outputField);
 		addWordButton.setOnAction(customHandler );
 		
 		// Second button is created and defined 'inline'
