@@ -10,22 +10,25 @@ import javafx.util.Duration;
 
 public class MovingShape {
 	private final Circle shape;
+	private final Timeline timeline;
 	
 	/**
 	 * constructor
 	 */
-	public MovingShape() {
+	public MovingShape(Timeline timeline) {
+		this.timeline = timeline;
+		
 		shape = new Circle(25, Color.RED);
 		shape.setCenterX(25);
 		shape.setCenterY(150);
 	}
 
 	public void startAnimation() {
-		final Timeline timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		
-		final KeyValue kv = new KeyValue(shape.centerXProperty(), 275);
-		final KeyFrame kf = new KeyFrame(Duration.millis(5000), kv);
+		KeyValue kv = new KeyValue(shape.centerXProperty(), 275);
+		KeyValue kv2 = new KeyValue(shape.centerYProperty(), 275);
+		KeyFrame kf = new KeyFrame(Duration.millis(5000), kv, kv2);
 		
 		timeline.getKeyFrames().add(kf);
 		timeline.play();

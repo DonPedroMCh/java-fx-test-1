@@ -1,5 +1,6 @@
 package pl.thorgal.notepad.spike;
 
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -26,13 +27,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Animation");
 
-		MovingShape movingShape = new MovingShape();
+		Timeline timeline = new Timeline();
+		MovingShape movingShape = new MovingShape(timeline);
+		ButtonHandler buttonHandler = new ButtonHandler(timeline);
 
 		Group freeFormPanel = new Group(movingShape.getGraphicsNode());
 
 		// Scene is like a layer of the window
 		Scene scene = new Scene(freeFormPanel, WINDOW_SIZE, WINDOW_SIZE);
-		
+
 		movingShape.startAnimation();
 
 		// Stage is the window itself
