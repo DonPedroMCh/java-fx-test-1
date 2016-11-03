@@ -1,13 +1,8 @@
 package pl.thorgal.notepad.spike;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 /**
@@ -15,7 +10,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-	private TextField outputField;
+	private static final int WINDOW_SIZE = 300;
 
 	/**
 	 * Required to start the jar as an executable.
@@ -29,33 +24,17 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		primaryStage.setTitle("Notepad");
+		primaryStage.setTitle("Animation");
 
-		// This element shows text on screen
-		outputField = new TextField();
-		outputField.setPrefSize(300, 150);
-		
-		// First button uses a separate class to define its logic
-		Button addWordButton = new Button("Add");
-		ButtonHandler customHandler = new ButtonHandler(outputField);
-		addWordButton.setOnAction(customHandler );
-		
-		// Second button is created and defined 'inline'
-		Button addWordButtonInline = new Button("Add");
-		addWordButtonInline.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				outputField.appendText("New word\n");
-			}
-		});
+		MovingShape movingShape = new MovingShape();
 
-		// Panels are different than buttons and fields; they make up sections of the window
-		FlowPane panel = new FlowPane(Orientation.VERTICAL);
-		panel.getChildren().addAll(addWordButton, addWordButtonInline, outputField);
+		Group freeFormPanel = new Group(movingShape.getGraphicsNode());
 
 		// Scene is like a layer of the window
-		Scene scene = new Scene(panel, 300, 250);
+		Scene scene = new Scene(freeFormPanel, WINDOW_SIZE, WINDOW_SIZE);
 		
+		movingShape.startAnimation();
+
 		// Stage is the window itself
 		primaryStage.setScene(scene);
 		primaryStage.show();
